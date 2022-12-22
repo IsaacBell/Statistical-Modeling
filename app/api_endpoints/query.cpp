@@ -6,7 +6,7 @@ Query& Query::operator=(const Query& rhs) {
 };
 
 Query& Query::operator=(Query&& rhs) noexcept {
-  std::swap(url, rhs.url);
+  std::swap(id, rhs.id);
   return *this;
 }
 
@@ -14,7 +14,7 @@ void Query::connect() {
   CURL* curl = curl_easy_init();
   CURLcode res;
   if (curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_URL, url().c_str());
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &writeCallback);
 
@@ -30,6 +30,12 @@ void Query::connect() {
   }
 
   curl_global_cleanup();
+
+  // wait until CURL is cleaned up to log results
+  if (curl && res == CURLE_OK) {
+    std::string log = "API: " + getQueryCode() + ":" + result;
+    BOOST_LOG_TRIVIAL(trace) << log;
+  }
 }
 
 size_t static Query::write_callback(

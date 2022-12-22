@@ -1,3 +1,5 @@
+#include "query.hpp";
+
 namespace TPF {
   struct AlphaVantageQuery : Query {
     AlphaVantageQuery(std::string url_) : url(url_);

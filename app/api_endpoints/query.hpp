@@ -1,13 +1,17 @@
 struct Query {
-  std::string url = "";
+  std::string id = "";
   std::string result;
+  std::string symbol;
+  std::string start_date;
+  std::string end_date;
+  std::string api_key;
 
   Query();
-  Query(std::string url_) : url(url_);
+  Query(std::string id_) : id(id_);
   ~Query();
 
-  Query(Query&& rhs) : url(rhs.url);
-  Query(const Query& rhs) : Query(rhs.url);
+  Query(Query&& rhs) : id(rhs.id);
+  Query(const Query& rhs) : Query(rhs.id);
 
   Query& operator=(const Query& rhs);
   Query& operator=(Query&& rhs) noexcept;
