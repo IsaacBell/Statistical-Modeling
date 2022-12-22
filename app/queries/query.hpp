@@ -7,14 +7,16 @@
 namespace TPF {
   class Query {
 		const std::string url() {
-			return "Do not use an instance of the base Query class";
+			return "";
 		}
 
 		void execute() {
+			if (!url()) return;
+
 			CURL* curl = curl_easy_init();
 			CURLcode res;
 			if (curl) {
-				curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+				curl_easy_setopt(curl, CURLOPT_URL, url().c_str());
 				curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 				curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &writeCallback);
 
