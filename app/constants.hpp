@@ -1,3 +1,0 @@
-#define TPF_INT = uint64t;
-
-#define API_GET_ALPHAVANTAGE_HISTORICAL_DATA_CODE = 1;
