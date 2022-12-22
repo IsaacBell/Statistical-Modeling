@@ -18,7 +18,7 @@ namespace TPF {
 			if (curl) {
 				curl_easy_setopt(curl, CURLOPT_URL, url().c_str());
 				curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-				curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &writeCallback);
+				curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &write_callback);
 
 				res = curl_easy_perform(curl);
 				if (res != CURLE_OK)
@@ -30,7 +30,7 @@ namespace TPF {
 			}
 		}
 
-		size_t static write_callback_func(
+		size_t static write_callback(
 			void* buffer,
 			size_t size,
 			size_t nmemb,
