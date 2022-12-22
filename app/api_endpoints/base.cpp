@@ -1,11 +1,11 @@
 #include <curl/curl.h>
 
 
-Query& operator=(const Query& rhs) {
+Query& Query::operator=(const Query& rhs) {
   return *this = Query(rhs);
 };
 
-Query& operator=(Query&& rhs) noexcept {
+Query& Query::operator=(Query&& rhs) noexcept {
   std::swap(url, rhs.url);
   return *this;
 }
