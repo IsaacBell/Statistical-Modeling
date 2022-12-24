@@ -1,3 +1,5 @@
+#include <string>
+
 struct Query {
   std::string id = "";
   std::string result;
@@ -7,20 +9,18 @@ struct Query {
   std::string api_key;
 
   Query();
-  Query(std::string id_) : id(id_);
+  Query(std::string id_) : id(id_) {};
   ~Query();
 
-  Query(Query&& rhs) : id(rhs.id);
-  Query(const Query& rhs) : Query(rhs.id);
+  Query(Query&& rhs) : id(rhs.id) {};
+  Query(const Query& rhs) : Query(rhs.id) {};
 
   Query& operator=(const Query& rhs);
   Query& operator=(Query&& rhs) noexcept;
 
-  static Query<T> lookup(T id);
-
   void connect();
 
-  size_t static Query::write_callback write_callback(
+  size_t static Query::write_callback(
     void* buffer,
     size_t size,
     size_t nmemb,
