@@ -8,7 +8,7 @@ namespace TPF {
   Engine::~Engine() {}
   void Engine::init() {}
   void Engine::start() {}
-  void Engine::stop() {
-    state = State::STOP;
+  void Engine::stopped() {
+    state = State::STOPPED;
   }
 }

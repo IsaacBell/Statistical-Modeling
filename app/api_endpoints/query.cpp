@@ -1,5 +1,6 @@
 #include <curl/curl.h>
-
+#include <string>
+#include <cstdio>
 
 Query& Query::operator=(const Query& rhs) {
   return *this = Query(rhs);

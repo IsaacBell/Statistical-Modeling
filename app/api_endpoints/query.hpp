@@ -1,4 +1,5 @@
 #include <string>
+#include <cstdio>
 
 struct Query {
   std::string id = "";
@@ -20,10 +21,10 @@ struct Query {
 
   void connect();
 
-  size_t static Query::write_callback(
+  std::size_t static Query::write_callback(
     void* buffer,
-    size_t size,
-    size_t nmemb,
+    std::size_t size,
+    std::size_t nmemb,
     void* userp
   );
 };
