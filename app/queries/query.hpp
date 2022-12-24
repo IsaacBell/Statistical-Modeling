@@ -1,45 +1,30 @@
-#include <stdlib.h>
-#include <iostream>
-// #include <jsoncpp/json/json.h>
+#include <string>
+#include <cstdio>
 
-#include "./constants.hpp"
+struct Query {
+  std::string id = "";
+  std::string result;
+  std::string symbol;
+  std::string start_date;
+  std::string end_date;
+  std::string api_key;
 
-namespace TPF {
-  class Query {
-		const std::string url() {
-			return "";
-		}
+  Query();
+  Query(std::string id_) : id(id_) {};
+  virtual ~Query();
 
-		void execute() {
-			if (!url()) return;
+  Query(Query&& rhs) : id(rhs.id) {};
+  Query(const Query& rhs) : Query(rhs.id) {};
 
-			CURL* curl = curl_easy_init();
-			CURLcode res;
-			if (curl) {
-				curl_easy_setopt(curl, CURLOPT_URL, url().c_str());
-				curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-				curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &write_callback);
+  Query& operator=(const Query& rhs);
+  Query& operator=(Query&& rhs) noexcept;
 
-				res = curl_easy_perform(curl);
-				if (res != CURLE_OK)
-					fprintf(stderr, "curl_easy_perform() failed: %s\n",
-						curl_easy_strerror(res));
+  virtual bool connect() = 0;
 
-				// always clean up
-				curl_easy_cleanup(curl);
-			}
-		}
-
-		size_t static write_callback(
-			void* buffer,
-			size_t size,
-			size_t nmemb,
-			void* userp
-		) {
-			char** response_ptr = (char**)userp;
-
-			/* assuming the response is a string */
-			*response_ptr = strndup(buffer, (size_t)(size * nmemb));
-		}
-  }
-}
+  std::size_t static Query::write_callback(
+    void* buffer,
+    std::size_t size,
+    std::size_t nmemb,
+    void* userp
+  );
+};

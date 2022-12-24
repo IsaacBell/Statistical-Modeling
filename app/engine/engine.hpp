@@ -4,15 +4,15 @@
 #include "../common/constants.hpp"
 
 namespace TPF {
-  enum class State {
-    DISCONNECTED,               // initial
+  enum State : int16_t {
+    DISCONNECTED = 0,           // initial
     CONNECTING,
     CONNECT_ACK,                // ctp: front end is  connected; tap:  logged in
     AUTHENTICATING,
     AUTHENTICATE_ACK,           // ctp: trade authencated
-    LOGINING,
+    LOGGING_IN,
     LOGIN_ACK,                  // ctp: logged in, t:ap api ready
-    LOGOUTING,
+    LOGGING_OUT,
     STOPPED
   };
 
