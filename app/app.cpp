@@ -1,13 +1,16 @@
-void init(bool production = false) {
+#include <boost/log/trivial.hpp>
+
+void init(bool production = false)
+{
   // https://www.boost.org/doc/libs/1_56_0/libs/log/doc/html/log/tutorial/trivial_filtering.html
-  
+
   if (production)
     logging::core::get()->set_filter(
-      logging::trivial::severity >= logging::trivial::info
-    );
+        logging::trivial::severity >= logging::trivial::info);
 }
 
-int main(int, char*[]) {
+int main(int, char *[])
+{
   init();
 
   // BOOST_LOG_TRIVIAL(trace) << "A trace severity message";

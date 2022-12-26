@@ -25,6 +25,11 @@
 
 namespace TPF
 {
+  extern std::atomic<bool> g_shutdown;
+  extern Except_frame g_except_stack;
+
+  extern atomic<uint64_t> MICRO_SERVICE_NUMBER;
+
   void start_engine(shared_ptr<Engine> p_e_);
 
   class DLL_EXPORT_IMPORT TradingEngineService
@@ -32,7 +37,7 @@ namespace TPF
     RUN_MODE mode = RUN_MODE::TRADE_MODE; // RUN_MODE::REPLAY_MODE;
     // BROKERS _broker = BROKERS::PAPER;
     std::vector<std::thread *> p_threads_;
-    // std::vector<std::shared_ptr<IEngine>> p_engines_;
+    // std::vector<std::shared_ptr<Engine>> p_engines_;
     // std::unique_ptr<IMessenger> msg_relay_;
     // std::shared_ptr<SQLogger> logger;
 
