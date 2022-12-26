@@ -351,7 +351,7 @@ namespace TPF
     std::string privatestream;
   };
 
-  // reserved for furture use
+  // reserved for future use
   class BaseData
   {
   public:

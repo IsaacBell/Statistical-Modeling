@@ -35,7 +35,7 @@ namespace TPF
     // std::vector<std::shared_ptr<Engine>> p_engines_;
 
   public:
-    void start_engine(shared_ptr<Engine> p_engine);
+    void start_engine(unique_ptr<Engine> p_engine_);
     int32_t cronjobs(bool force = true);
 
     int32_t run();

@@ -46,7 +46,7 @@
 
 namespace TPF
 {
-  void TradingEngineService::start_engine(shared_ptr<Engine> p_engine)
+  void TradingEngineService::start_engine(unique_ptr<Engine> p_engine)
   {
     p_engine->start();
   }
