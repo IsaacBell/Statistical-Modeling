@@ -52,7 +52,6 @@ public:
                            NULL, NULL);
     if (resp != RdKafka::ERR_NO_ERROR)
     {
-      std::cerr << "Produce failed: " << RdKafka::err2str(resp) << std::endl;
       BOOST_LOG_TRIVIAL(error) << ("Message production failed: " + RdKafka::err2str(resp));
     }
     else

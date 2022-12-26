@@ -14,7 +14,7 @@
 
 namespace TPF
 {
-  extern std::atomic<bool> gShutdown;
+  extern std::atomic<bool> g_shutdown;
   std::atomic<uint64_t> MICRO_SERVICE_NUMBER(0);
 
   void DataBoardService()
@@ -23,7 +23,7 @@ namespace TPF
     {
       // std::unique_ptr<CMsgq> msgq_sub_;
       // msgq_sub_ = std::make_unique<CMsgqNanomsg>(MSGQ_PROTOCOL::SUB, CConfig::instance().SERVERPUB_URL, false);
-      // while (!gShutdown) {
+      // while (!g_shutdown) {
       // 	string msg = msgq_sub_->recmsg(0);
       // 	if (!msg.empty()) {
 
@@ -142,7 +142,7 @@ namespace TPF
     char *buf = nullptr;
     if (fp)
     {
-      while (!gShutdown)
+      while (!g_shutdown)
       {
         string msg = msgq_sub_->recmsg(0);
 
@@ -163,12 +163,12 @@ namespace TPF
     // vector<TimeAndMsg> lines = readreplayfile(filetoreplay);
     vector<string> lines = readreplayfile(filetoreplay);
     int32_t i = 0, sz = lines.size();
-    while (!gShutdown && i++ < sz)
+    while (!g_shutdown && i++ < sz)
     {
       //			logt = lines[i].t;
       //			curt = getMicroTime();
       //			static uint64_t diff = curt - logt;      //89041208806
-      // while (!gShutdown && (diff + logt > curt)) {
+      // while (!g_shutdown && (diff + logt > curt)) {
       // 	curt = getMicroTime();
       // }
       //			string& msg = lines[i].msg;

@@ -20,7 +20,7 @@
 
 namespace TPF
 {
-  extern std::atomic<bool> gShutdown;
+  extern std::atomic<bool> g_shutdown;
 
   void StrategyManagerService() {}
 }
