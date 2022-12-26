@@ -237,9 +237,7 @@ namespace TPF
               CPU_SET(i % num_cpus, &cpuset);
               int32_t rc = pthread_setaffinity_np(threads_[i]->native_handle(), sizeof(cpu_set_t), &cpuset);
               if (rc != 0)
-              {
                 BOOST_LOG_TRIVIAL(error) << "Error calling pthread_setaffinity_np: " << rc;
-              }
             }
 
             // main thread
@@ -248,9 +246,7 @@ namespace TPF
             CPU_SET(threads_.size() % num_cpus, &cpuset);
             int32_t rc = pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
             if (rc != 0)
-            {
               BOOST_LOG_TRIVIAL(error) << "Error calling pthread_setaffinity_np: " << rc;
-            }
           }
           while (!g_shutdown)
           {
