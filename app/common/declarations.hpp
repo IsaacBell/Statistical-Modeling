@@ -344,8 +344,8 @@ namespace TPF
     std::string password;
     std::string auth_code;
     std::string productinfo;
-    vector<std::string> md_address;
-    vector<std::string> td_address;
+    std::vector<std::string> md_address;
+    std::vector<std::string> td_address;
     std::string appid;
     std::string publicstream;
     std::string privatestream;
@@ -398,7 +398,7 @@ namespace TPF
 
     virtual std::string serialize()
     {
-      std::string tmp = destination_ + SERIALIZATION_SEPARATOR + source_ + SERIALIZATION_SEPARATOR + to_string(msgtype_);
+      std::string tmp = destination_ + SERIALIZATION_SEPARATOR + source_ + SERIALIZATION_SEPARATOR + std::to_string(msgtype_);
       return tmp;
     }
     virtual void deserialize(const std::string &msgin) {}
@@ -620,24 +620,6 @@ namespace TPF
     bool allOrNone_ = false;
   };
 
-  class DLL_EXPORT_IMPORT CtpOrder : public Order
-  {
-  public:
-    CtpOrder() {}
-    ~CtpOrder() {}
-    // request msg data
-    struct CThostFtdcInputOrderField orderField_;
-  };
-
-  class DLL_EXPORT_IMPORT CtpParkedOrder : public Order
-  {
-  public:
-    CtpParkedOrder() {}
-    ~CtpParkedOrder() {}
-    // request msg data
-    struct CThostFtdcParkedOrderField parkedOrderField_;
-  };
-
   class DLL_EXPORT_IMPORT OrderMsg : public MsgHeader
   {
   public:
@@ -663,36 +645,6 @@ namespace TPF
     ~PaperOrderMsg() {}
 
     PaperOrder data_;
-
-    virtual void deserialize(const std::string &msgin);
-    std::shared_ptr<Order> toPOrder();
-  };
-
-  class DLL_EXPORT_IMPORT CtpOrderMsg : public MsgHeader
-  {
-  public:
-    CtpOrderMsg() : MsgHeader(), data_()
-    {
-      msgtype_ = MSG_TYPE::MSG_TYPE_ORDER_CTP;
-    }
-    ~CtpOrderMsg() {}
-
-    CtpOrder data_;
-
-    virtual void deserialize(const std::string &msgin);
-    std::shared_ptr<Order> toPOrder();
-  };
-
-  class DLL_EXPORT_IMPORT CtpParkedOrderMsg : public MsgHeader
-  {
-  public:
-    CtpParkedOrderMsg() : MsgHeader(), data_()
-    {
-      msgtype_ = MSG_TYPE::MSG_TYPE_ORDER_CTP;
-    }
-    ~CtpParkedOrderMsg() {}
-
-    CtpParkedOrder data_;
 
     virtual void deserialize(const std::string &msgin);
     std::shared_ptr<Order> toPOrder();
