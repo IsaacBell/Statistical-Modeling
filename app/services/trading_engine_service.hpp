@@ -33,6 +33,8 @@
 #include <memory>
 #include <vector>
 
+#include "../engine/engine.hpp"
+
 namespace TPF
 {
   extern std::atomic<bool> g_shutdown;
@@ -40,9 +42,7 @@ namespace TPF
 
   extern std::atomic<uint64_t> MICRO_SERVICE_NUMBER;
 
-  void start_engine(shared_ptr<Engine> p_engine)
-
-      class DLL_EXPORT_IMPORT TradingEngineService
+  class DLL_EXPORT_IMPORT TradingEngineService
   {
     RUN_MODE mode = RUN_MODE::TRADE_MODE; // RUN_MODE::REPLAY_MODE;
     // BROKERS _broker = BROKERS::PAPER;
@@ -54,6 +54,7 @@ namespace TPF
   public:
     // std::atomic<bool>* setconsolecontrolhandler(void);
     // setconsolecontrolhandler(void)
+    void start_engine(shared_ptr<Engine> p_engine);
     int32_t cronjobs(bool force = true);
 
     int32_t run();

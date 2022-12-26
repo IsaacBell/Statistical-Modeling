@@ -42,7 +42,7 @@
 
 #include <boost/log/trivial.hpp>
 
-#include "../"
+#include "trading_engine_service.hpp"
 
 namespace TPF
 {
