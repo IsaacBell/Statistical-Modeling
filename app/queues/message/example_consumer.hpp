@@ -18,7 +18,7 @@ public:
 
 int main(int argc, char **argv)
 {
-  std::string brokers = "localhost:9092";
+  std::string brokers = getenv("TPF_KAFKA_PORT") || "localhost:9092";
   std::string errstr;
   std::string topic_str = "test";
   std::string group_id = "my_consumer_group_id";
