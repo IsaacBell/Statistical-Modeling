@@ -12,18 +12,18 @@ namespace TPF
     // Create Kafka producer
     RdKafka::Conf *conf = RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL);
 
-    conf->set("metadata.broker.list", broker, errstr);
-    conf->set("queue.buffering.max.messages", "1000000", errstr);
-    conf->set("batch.num.messages", "1000", errstr);
-    conf->set("message.send.max.retries", "10", errstr);
-    conf->set("retry.backoff.ms", "500", errstr);
-    conf->set("statistics.interval.ms", "30000", errstr);
-    conf->set("default_topic_conf", conf, errstr);
+    conf->set("metadata.broker.list", broker, errstr_);
+    conf->set("queue.buffering.max.messages", "1000000", errstr_);
+    conf->set("batch.num.messages", "1000", errstr_);
+    conf->set("message.send.max.retries", "10", errstr_);
+    conf->set("retry.backoff.ms", "500", errstr_);
+    conf->set("statistics.interval.ms", "30000", errstr_);
+    conf->set("default_topic_conf", conf, errstr_);
 
-    producer_ = RdKafka::Producer::create(conf, errstr);
+    producer_ = RdKafka::Producer::create(conf, errstr_);
     if (!producer_)
     {
-      BOOST_LOG_TRIVIAL(error) << "Failed to create producer: " << errstr;
+      BOOST_LOG_TRIVIAL(error) << "Failed to create producer: " << errstr_;
       exit(1);
     }
   }
@@ -41,7 +41,7 @@ namespace TPF
                            NULL, NULL);
     if (resp != RdKafka::ERR_NO_ERROR)
     {
-      BOOST_LOG_TRIVIAL(error) << "Produce error: " << RdKafka::err2str(resp);
+      BOOST_LOG_TRIVIAL(error) << "Error producing message: " << RdKafka::err2str(resp);
     }
     producer_->poll(0);
   }
