@@ -40,9 +40,8 @@ namespace TPF
                            const_cast<char *>(message.c_str()), message.size(),
                            NULL, NULL);
     if (resp != RdKafka::ERR_NO_ERROR)
-    {
       BOOST_LOG_TRIVIAL(error) << "Error producing message: " << RdKafka::err2str(resp);
-    }
+
     producer_->poll(0);
   }
 }

@@ -51,9 +51,7 @@ public:
                            const_cast<char *>(message.c_str()), message.size(),
                            NULL, NULL);
     if (resp != RdKafka::ERR_NO_ERROR)
-    {
       BOOST_LOG_TRIVIAL(error) << ("Message production failed: " + RdKafka::err2str(resp));
-    }
     else
       BOOST_LOG_TRIVIAL(info) << ("Produced message: " + message);
 
