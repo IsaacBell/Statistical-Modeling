@@ -13,8 +13,8 @@
  *  limitations under the License.
  *****************************************************************************/
 
-#ifndef _TPF_SERVICES_TRADINGENGINE_H_
-#define _TPF_SERVICES_TRADINGENGINE_H_
+#ifndef _TPF_SERVICES_TRADING_ENGINE_SERVICE_H_
+#define _TPF_SERVICES_TRADING_ENGINE_SERVICE_H_
 
 // #include <Common/datastruct.h>
 // #include <Engine/Engine.h>
@@ -25,14 +25,14 @@
 
 namespace TPF
 {
-  void startengine(shared_ptr<IEngine> pe);
+  void start_engine(shared_ptr<Engine> p_e_);
 
-  class DLL_EXPORT_IMPORT tradingengine
+  class DLL_EXPORT_IMPORT TradingEngineService
   {
     RUN_MODE mode = RUN_MODE::TRADE_MODE; // RUN_MODE::REPLAY_MODE;
-    BROKERS _broker = BROKERS::PAPER;
-    std::vector<std::thread *> threads_;
-    // std::vector<std::shared_ptr<IEngine>> pengines_;
+    // BROKERS _broker = BROKERS::PAPER;
+    std::vector<std::thread *> p_threads_;
+    // std::vector<std::shared_ptr<IEngine>> p_engines_;
     // std::unique_ptr<IMessenger> msg_relay_;
     // std::shared_ptr<SQLogger> logger;
 
@@ -44,18 +44,13 @@ namespace TPF
     int32_t run();
     bool live() const;
 
-    tradingengine();
-    ~tradingengine();
+    TradingEngineService();
+    ~TradingEngineService();
 
-    // https://mail.python.org/pipermail/cplusplus-sig/2004-July/007472.html
-    // http://stackoverflow.com/questions/10142417/boostpython-compilation-fails-because-copy-constructor-is-private
-    // For Boost::Python
-    tradingengine(tradingengine &&) = delete;
-    tradingengine(const tradingengine &) = delete;
-    tradingengine &operator=(tradingengine &&) = delete;
-    tradingengine &operator=(const tradingengine &) = delete;
+    TradingEngineService(TradingEngineService &&) = delete;
+    TradingEngineService(const TradingEngineService &) = delete;
+    TradingEngineService &operator=(TradingEngineService &&) = delete;
+    TradingEngineService &operator=(const TradingEngineService &) = delete;
   };
-
 } // namespace TPF
-
-#endif // CPPSRC_TPF_SERVICES_TRADINGENGINE_H_
+#endif // _TPF_SERVICES_TRADING_ENGINE_SERVICE_H_
