@@ -410,22 +410,22 @@ namespace TPF
     Tick() {}
     ~Tick() {}
 
-    std::string fullSymbol_;
+    std::string full_symbol_;
     std::string time_;
     double price_ = 0.0;
     int32_t size_ = 0;
     int32_t depth_ = 1;
-    double bidPrice_[20] = {0.0};
-    int32_t bidSize_[20] = {0};
-    double askPrice_[20] = {0.0};
-    int32_t askSize_[20] = {0};
-    int32_t openInterest_ = 0;
+    double bid_price_[20] = {0.0};
+    int32_t bid_size_[20] = {0};
+    double ask_price_[20] = {0.0};
+    int32_t ask_size_[20] = {0};
+    int32_t open_interest_ = 0;
     double open_ = 0.0;
     double high_ = 0.0;
     double low_ = 0.0;
-    double preClose_ = 0.0;
-    double upperLimitPrice_ = 0.0;
-    double lowerLimitPrice_ = 0.0;
+    double pre_close_ = 0.0;
+    double upper_limit_price_ = 0.0;
+    double lower_limit_price_ = 0.0;
   };
 
   class DLL_EXPORT_IMPORT TickMsg : public MsgHeader
@@ -448,26 +448,26 @@ namespace TPF
   public:
     Security() {}
     ~Security() {}
-    std::string fullSymbol_;
+    std::string full_symbol_;
     std::string symbol_;
-    char securityType_;
+    char security_type_;
     std::string exchange_;
-    std::string contractNo_;
+    std::string contract_no_;
     int32_t multiplier_ = 0;
-    std::string localName_; // Unicode; e.g., in Chinese or French
+    std::string local_name_; // unicode; e.g., in chinese or french
     std::string currency_;
     double ticksize_ = 0.0;
-    double longMarginRatio_ = 0.0;
-    double shortMarginRatio_ = 0.0;
+    double long_margin_ratio_ = 0.0;
+    double short_margin_ratio_ = 0.0;
     char postype_ = '2';
-    // Options
-    std::string underlyingSymbol_;
-    char optionType_;
-    double strikePrice_ = 0.0;
-    char strikeMode_;
-    char strikeType_;
-    char applyType_;
-    std::string expiryDate_;
+    // options
+    std::string underlying_symbol_;
+    char option_type_;
+    double strike_price_ = 0.0;
+    char strike_mode_;
+    char strike_type_;
+    char apply_type_;
+    std::string expiry_date_;
   };
 
   class DLL_EXPORT_IMPORT SecurityMsg : public MsgHeader
@@ -491,19 +491,19 @@ namespace TPF
     AccountInfo() {}
     ~AccountInfo() {}
 
-    std::string accountID_;
-    std::string accountType_; // INDIVIDUAL
-    double availableFunds_ = 0.0;
-    double netLiquidation_ = 0.0;
-    double equityWithLoanValue_ = 0.0;
-    double previousDayEquityWithLoanValue_ = 0.0;
-    double fullInitialMargin_ = 0.0;
-    double fullMaintainanceMargin_ = 0.0;
+    std::string account_id_;
+    std::string account_type_; // individual
+    double available_funds_ = 0.0;
+    double net_liquidation_ = 0.0;
+    double equity_with_loan_value_ = 0.0;
+    double previous_day_equity_with_loan_value_ = 0.0;
+    double full_initial_margin_ = 0.0;
+    double full_maintainance_margin_ = 0.0;
     double commission_ = 0.0;
-    double buyingPower_ = 0.0;
-    double cashBalance_ = 0.0;
-    double realizedPnL_ = 0.0;
-    double unrealizedPnL_ = 0.0;
+    double buying_power_ = 0.0;
+    double cash_balance_ = 0.0;
+    double realized_pn_l_ = 0.0;
+    double unrealized_pn_l_ = 0.0;
     double frozen_ = 0.0;
     double balance_ = 0.0;
   };
@@ -529,22 +529,22 @@ namespace TPF
     Fill() {}
     ~Fill() {}
 
-    int64_t serverOrderID_ = -1; // local server id
-    int64_t clientOrderID_ = -1;
-    int64_t brokerOrderID_ = -1;
-    int64_t tradeId_ = -1; // local id
-    int32_t clientID_ = 0; // sid, get from client; 0=mannual
-    std::string orderNo_;  // exchange id
-    std::string localNo_;
-    std::string tradeNo_; // exchange id
-    std::string tradeTime_;
-    std::string fullSymbol_;
+    int64_t server_order_id_ = -1; // local server id
+    int64_t client_order_id_ = -1;
+    int64_t broker_order_id_ = -1;
+    int64_t trade_id_ = -1; // local id
+    int32_t client_id_ = 0; // sid, get from client; 0=mannual
+    std::string order_no_;  // exchange id
+    std::string local_no_;
+    std::string trade_no_; // exchange id
+    std::string trade_time_;
+    std::string full_symbol_;
     std::string account_;
-    OrderFlag fillFlag_ = OrderFlag::OF_OpenPosition;
-    std::string api_; // IB, ctp etc
+    order_flag fill_flag_ = order_flag::of_open_position;
+    std::string api_; // ib, ctp etc
     std::string currency_;
-    double tradePrice_ = 0.0;
-    int32_t tradeSize_ = 0; // < 0 = short, order size != trade size
+    double trade_price_ = 0.0;
+    int32_t trade_size_ = 0; // < 0 = short, order size != trade size
     double commission_ = 0.0;
   };
 
@@ -573,26 +573,26 @@ namespace TPF
     Order() {}
     ~Order() {}
     // request msg header
-    std::string api_;            // ctp, tap etc
-    std::string account_;        // account
-    int32_t clientID_ = 0;       // client id, get from client; 0=mannual
-    int64_t clientOrderID_ = -1; // clientside id
-    std::string tag_;            // reseverd for other use
-                                 // server and callback content, for return orderstatus msg
-                                 // unique symbol for underlying commodity: exchange + type + commodityname + commodityno
-    std::string fullSymbol_;
+    std::string api_;              // ctp, tap etc
+    std::string account_;          // account
+    int32_t client_id_ = 0;        // client id, get from client; 0=mannual
+    int64_t client_order_id_ = -1; // clientside id
+    std::string tag_;              // reseverd for other use
+                                   // server and callback content, for return orderstatus msg
+                                   // unique symbol for underlying commodity: exchange + type + commodityname + commodityno
+    std::string full_symbol_;
     double price_ = 0.0;
     int32_t quantity_ = 0; // total original
     int32_t tradedvol_ = 0;
-    OrderFlag flag_ = OrderFlag::OF_OpenPosition;
-    int64_t serverOrderID_ = -1; // orderref, unique sqserver id
-    int64_t brokerOrderID_ = -1; // for statistical use
-    std::string orderNo_;        // unique exchange order id,for ctp = exchangeID_+ orsysid
-    std::string localNo_;        // unique local id ,frontid +sessionid +orderref
-    std::string createTime_;
-    std::string updateTime_;
-    OrderStatus orderStatus_ = OrderStatus::OS_UNKNOWN;
-    OrderType orderType_ = OrderType::OT_Default;
+    order_flag flag_ = order_flag::of_open_position;
+    int64_t server_order_id_ = -1; // orderref, unique sqserver id
+    int64_t broker_order_id_ = -1; // for statistical use
+    std::string order_no_;         // unique exchange order id,for ctp = exchange_id_+ orsysid
+    std::string local_no_;         // unique local id ,frontid +sessionid +orderref
+    std::string create_time_;
+    std::string update_time_;
+    order_status order_status_ = order_status::os_unknown;
+    order_type order_type_ = order_type::ot_default;
   };
 
   bool isActiveOrder(const Order &o);
@@ -604,20 +604,20 @@ namespace TPF
     PaperOrder() {}
     ~PaperOrder() {}
 
-    OrderFlag orderFlag_ = OrderFlag::OF_OpenPosition;
-    int32_t orderSize_ = 0;
-    std::string fillNo_; // < 0 = short, order size != trade size
-    int32_t filledSize_ = 0;
-    double lastFilledPrice_ = 0.0;
-    double avgFilledPrice_ = 0.0;
-    double limitPrice_ = 0.0;
-    double stopPrice_ = 0.0;
-    double trailPrice_ = 0.0;
-    double trailingPercent_ = 0.0;
-    std::string timeInForce_;
-    bool outsideRegularTradingHour_ = false;
+    order_flag order_flag_ = order_flag::of_open_position;
+    int32_t order_size_ = 0;
+    std::string fill_no_; // < 0 = short, order size != trade size
+    int32_t filled_size_ = 0;
+    double last_filled_price_ = 0.0;
+    double avg_filled_price_ = 0.0;
+    double limit_price_ = 0.0;
+    double stop_price_ = 0.0;
+    double trail_price_ = 0.0;
+    double trailing_percent_ = 0.0;
+    std::string time_in_force_;
+    bool outside_regular_trading_hour_ = false;
     bool hidden_ = false;
-    bool allOrNone_ = false;
+    bool all_or_none_ = false;
   };
 
   class DLL_EXPORT_IMPORT OrderMsg : public MsgHeader
@@ -673,15 +673,15 @@ namespace TPF
     std::string key_ = "";
     std::string account_ = "";
     std::string api_ = "";
-    std::string fullSymbol_ = "";
-    double avgPrice_ = 0;
+    std::string full_symbol_ = "";
+    double avg_price_ = 0;
     int32_t size_ = 0;
-    int32_t preSize_ = 0;
-    int32_t freezedSize_ = 0;
+    int32_t pre_size_ = 0;
+    int32_t freezed_size_ = 0;
     double openpl_ = 0;   // unrealized pnl
     double closedpl_ = 0; // realized pnl
     char type_ = '1';     // direction
-    std::string posNo_ = "";
+    std::string pos_no_ = "";
   };
 
   class DLL_EXPORT_IMPORT PosMsg : public MsgHeader
@@ -706,21 +706,21 @@ namespace TPF
     std::string key_ = "";
     std::string account_ = "";
     std::string api_ = "";
-    std::string fullSymbol_ = "";
-    double avgPrice_ = 0;
+    std::string full_symbol_ = "";
+    double avg_price_ = 0;
     int32_t size_ = 0;
-    int32_t preSize_ = 0;
-    int32_t freezedSize_ = 0;
+    int32_t pre_size_ = 0;
+    int32_t freezed_size_ = 0;
     double openpl_ = 0;   // unrealized pnl
     double closedpl_ = 0; // realized pnl
     char type_ = '1';     // direction
-    std::string posNo_ = "";
+    std::string pos_no_ = "";
     std::string openapi_ = "";
-    std::string openOrderNo_ = "";
-    int32_t openClientID_ = -1;
+    std::string open_order_no_ = "";
+    int32_t open_client_id_ = -1;
     std::string closeapi_ = "";
-    std::string closeOrderNo_ = "";
-    int32_t closeClientID_ = -1;
+    std::string close_order_no_ = "";
+    int32_t close_client_id_ = -1;
   };
 
   class DLL_EXPORT_IMPORT PosDetailMsg : public MsgHeader
@@ -742,10 +742,10 @@ namespace TPF
     OrderAction() {}
     ~OrderAction() {}
 
-    int32_t clientID_ = 0;
-    int64_t serverOrderID_ = -1;
-    int64_t clientOrderID_ = -1;
-    std::string orderNo_;
+    int32_t client_id_ = 0;
+    int64_t server_order_id_ = -1;
+    int64_t client_order_id_ = -1;
+    std::string order_no_;
   };
 
   class DLL_EXPORT_IMPORT OrderActionMsg : public MsgHeader
@@ -774,7 +774,7 @@ namespace TPF
     }
     ~SubscribeMsg() {}
     SymbolType symtype_;
-    vector<std::string> data_;
+    std::vector<std::string> data_;
 
     // virtual std::string serialize();
     virtual void deserialize(const std::string &msgin);
@@ -791,7 +791,7 @@ namespace TPF
     ~UnSubscribeMsg() {}
 
     SymbolType symtype_;
-    vector<std::string> data_;
+    std::vector<std::string> data_;
 
     // virtual std::string serialize();
     virtual void deserialize(const std::string &msgin);
