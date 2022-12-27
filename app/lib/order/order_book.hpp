@@ -3,7 +3,8 @@
 
 namespace TPF
 {
-  using order_accessor = tbb::concurrent_hash_map<const std::string_view, Order>::accessor;
+  using order_accessor = tbb::concurrent_hash_map<int, int>::accessor;
+  using order_lookup_by_price = tbb::concurrent_hash_map<int, int>;
 
   class OrderBook
   {
@@ -15,6 +16,6 @@ namespace TPF
     std::pair<int, int> get_best_ask() const;
 
   private:
-    tbb::concurrent_hash_map<int, int> orders_; // map of price to volume
+    order_lookup_by_price orders_; // map of price to volume
   };
 }

@@ -1,7 +1,8 @@
 #include <string>
 #include <cstdio>
 
-struct Query {
+struct Query
+{
   std::string id = "";
   std::string result;
   std::string symbol;
@@ -10,21 +11,20 @@ struct Query {
   std::string api_key;
 
   Query();
-  Query(std::string id_) : id(id_) {};
+  Query(std::string id_) : id(id_){};
   virtual ~Query();
 
-  Query(Query&& rhs) : id(rhs.id) {};
-  Query(const Query& rhs) : Query(rhs.id) {};
+  Query(Query &&rhs) : id(rhs.id){};
+  Query(const Query &rhs) : Query(rhs.id){};
 
-  Query& operator=(const Query& rhs);
-  Query& operator=(Query&& rhs) noexcept;
+  Query &operator=(const Query &rhs);
+  Query &operator=(Query &&rhs) noexcept;
 
-  virtual bool connect() = 0;
+  bool connect();
 
   std::size_t static Query::write_callback(
-    void* buffer,
-    std::size_t size,
-    std::size_t nmemb,
-    void* userp
-  );
+      void *buffer,
+      std::size_t size,
+      std::size_t nmemb,
+      void *userp);
 };
