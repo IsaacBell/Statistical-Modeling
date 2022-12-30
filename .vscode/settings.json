@@ -66,6 +66,8 @@
     "iomanip": "cpp",
     "stack": "cpp",
     "thread": "cpp",
-    "filesystem": "cpp"
+    "filesystem": "cpp",
+    "numeric": "cpp",
+    "random": "cpp"
   }
 }

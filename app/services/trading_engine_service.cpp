@@ -53,11 +53,12 @@ namespace TPF
 
   TradingEngineService::TradingEngineService()
   {
+    // TODO
     // CConfig::instance();
-    DataManager::instance();
-    OrderManager::instance();
-    PortfolioManager::instance();
-    RiskManager::instance();
+    // DataManager::instance();
+    // OrderManager::instance();
+    // PortfolioManager::instance();
+    // RiskManager::instance();
 
     // TODO
     // _broker = CConfig::instance()._broker;
@@ -76,9 +77,6 @@ namespace TPF
 
       while (MICRO_SERVICE_NUMBER > 0)
         msleep(100);
-
-      // if (CConfig::instance()._msgq == MSGQ::NANOMSG)
-      //   nn_term();
 
       for (std::thread *t : threads_)
       {
