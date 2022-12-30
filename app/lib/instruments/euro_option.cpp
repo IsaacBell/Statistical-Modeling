@@ -2,9 +2,11 @@
 #include <string>
 #include <Eigen/Dense>
 
+#include "european_option.hpp"
+
 namespace TPF
 {
-  EuroOption : EuroOption(double S0, double K, double r, double sigma, double T, int n_sims, int n_steps)
+  EuroOption::EuroOption(double S0, double K, double r, double sigma, double T, int n_sims, int n_steps)
       : S0_(S0), K_(K), r_(r), sigma_(sigma), T_(T), n_sims_(n_sims), n_steps_(n_steps) {}
 
   Eigen::MatrixXd EuroOption::MonteCarloSimulation()
