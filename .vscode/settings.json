@@ -68,6 +68,8 @@
     "thread": "cpp",
     "filesystem": "cpp",
     "numeric": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "__tree": "cpp",
+    "map": "cpp"
   }
 }
