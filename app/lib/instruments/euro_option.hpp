@@ -2,25 +2,21 @@
 #include <string>
 #include <Eigen/Dense>
 
+#include "data/euro_option_data.hpp"
+
 namespace TPF
 {
   class EuroOption
   {
   public:
-    EuroOption(double S0, double K, double r, double sigma, double T, int n_sims, int n_steps)
-        : S0_(S0), K_(K), r_(r), sigma_(sigma), T_(T), n_sims_(n_sims), n_steps_(n_steps) {}
+    EuroOption(EuroOptionData &data);
 
     Eigen::MatrixXd MonteCarloSimulation();
 
-    double Price(const std::string_view &option_type);
+    double Price(const std::string_view &option_type) const;
+    double Price(const std::string_view &option_type) const;
 
   private:
-    double S0_;
-    double K_;
-    double r_;
-    double sigma_;
-    double T_;
-    int n_sims_;
-    int n_steps_;
+    EuroOptionData data_;
   };
 }

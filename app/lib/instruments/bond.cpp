@@ -21,7 +21,7 @@ namespace TPF
   {
     std::time_t current_time = std::time(nullptr);
     std::tm *current_tm = std::localtime(&current_time);
-    current_tm->tm_year += data_.maturity_years;
+    current_tm->tm_year += data_.maturity_years_;
     return std::mktime(current_tm);
   }
 } // namespace TPF
