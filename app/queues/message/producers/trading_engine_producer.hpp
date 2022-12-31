@@ -3,16 +3,19 @@
 #include <librdkafka/rdkafkacpp.h>
 #include <boost/log/trivial.hpp>
 
+#include "../producer.hpp"
+
 namespace TPF
 {
-  class TradingEngineProducer
+  class TradingEngineProducer : Producer
   {
   public:
-    TradingEngineProducer(const std::string &broker, const std::string_view &topic)
-        : broker_(broker), topic_(topic);
+    TradingEngineProducer();
+    ~TradingEngineProducer();
 
     // Send a trade message to Kafka
-    void send_trade(const std::string_view &security, int volume, int price);
+    void send_security(const std::string &security, int volume, int price);
+    void send_message(const std::string &message);
 
   private:
     std::string broker_;          // Kafka broker
