@@ -21,17 +21,8 @@ namespace TPF
     headers.insert({"Authorization", "Bearer " + auth_token_});
     headers.insert({"Content-Type", "application/json"});
 
-    auto response = cpr::Post(cpr::Url{api_url}, headers, cpr::Body{data_.data_ || ""});
+    response_ = cpr::Post(cpr::Url{api_url}, headers, cpr::Body{data_.data_ || ""});
 
-    if (response.status_code == 200)
-    {
-      response_ = response;
-      return true;
-    }
-    else
-    {
-      std::cerr << "Error: " << response.status_code << "\n";
-      return false;
-    }
+    return response_.status_code == 200;
   }
 } // namespace TPF
