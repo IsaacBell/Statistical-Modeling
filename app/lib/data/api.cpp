@@ -5,22 +5,27 @@
 
 namespace TPF
 {
-  API::API(const std::string_view &api_url, const std::string_view &auth_token, const std::string_view &data)
-      : api_url(api_url), auth_token(auth_token), data(data) {}
+  API::API(APIRequestData &data) : data_(data) {}
 
-  bool post()
+  bool Get(std::string_view url = "", cpr::Parameters params)
   {
-    // Set the request headers
+    response_ = cpr::Get(cpr::Url{url || url()},
+                         params || cpr::Parameters{{"apikey", auth_token_ || api_key()}});
+
+    return response.status_code == 200;
+  }
+
+  bool Post()
+  {
     cpr::Header headers;
-    headers.insert({"Authorization", "Bearer " + auth_token});
+    headers.insert({"Authorization", "Bearer " + auth_token_});
     headers.insert({"Content-Type", "application/json"});
 
-    // Make the POST request
-    auto response = cpr::Post(cpr::Url{api_url}, headers, cpr::Body{data});
+    auto response = cpr::Post(cpr::Url{api_url}, headers, cpr::Body{data_.data_ || ""});
 
-    // Check the status code of the response
     if (response.status_code == 200)
     {
+      response_ = response;
       return true;
     }
     else
