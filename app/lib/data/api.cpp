@@ -7,12 +7,12 @@ namespace TPF
 {
   API::API(APIRequestData &data) : data_(data) {}
 
-  bool Get(std::string_view url = "", cpr::Parameters params)
+  bool Get(std::string_view url = "", cpr::Parameters params = nullptr)
   {
     response_ = cpr::Get(cpr::Url{url || url()},
                          params || cpr::Parameters{{"apikey", auth_token_ || api_key()}});
 
-    return response.status_code == 200;
+    return response_.status_code == 200;
   }
 
   bool Post()
