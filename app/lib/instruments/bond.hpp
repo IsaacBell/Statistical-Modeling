@@ -9,10 +9,8 @@ namespace TPF
   public:
     Bond(const BondData &data);
 
-    double Price() const;
-
-    double Yield(double market_price) const;
-
+    double Bond::Price() const noexcept;
+    double Yield(double market_price) const noexcept;
     std::time_t MaturityDate() const;
 
   private:
