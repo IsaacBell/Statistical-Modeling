@@ -13,7 +13,7 @@ const std::string AlphaVantageQuery::api_key() const
   return getenv("TPF_ALPHAVANTAGE_API_KEY") || "";
 }
 
-bool AlphaVantageQuery::get_historical_data()
+bool AlphaVantageQuery::GetHistoricalData()
 {
   return Get(
       url(),

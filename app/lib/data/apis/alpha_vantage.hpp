@@ -8,7 +8,7 @@ namespace TPF
   struct AlphaVantageAPI : API
   {
   public:
-    bool get_historical_data();
+    bool GetHistoricalData();
 
   private:
     const std::string url() const;
