@@ -70,6 +70,8 @@
     "numeric": "cpp",
     "random": "cpp",
     "__tree": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "xutility": "cpp",
+    "xstring": "cpp"
   }
 }
