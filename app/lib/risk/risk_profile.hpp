@@ -5,20 +5,20 @@
 
 namespace TPF
 {
-  using order_accessor = tbb::concurrent_hash_map<const std::string_view, Order>::accessor;
-  using portfolio = tbb::concurrent_hash_map<const std::string_view, Position>;
-
-  struct RiskProfile
+  struct Risk::Position
   {
-  public:
-    struct Position
-    {
-      std::string security;
-      int size_ = -1;
-      int num_exposures_ = -1;
-      int margin_requirements_ = -1;
-    };
+    std::string security_;
+    int size_ = -1;
+    int num_exposures_ = -1;
+    int margin_requirements_ = -1;
+  };
 
+  struct Risk::Profile
+  {
+    using order_accessor = tbb::concurrent_hash_map<const std::string_view, Order>::accessor;
+    using portfolio = tbb::concurrent_hash_map<const std::string_view, Risk::Position>;
+
+  public:
     portfolio portfolio_;
 
     void add_position(const std::string_view &security, int volume, int price);
