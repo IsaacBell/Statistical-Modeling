@@ -41,7 +41,8 @@ namespace TPF
     }
   }
 
-  void Consumer::consume_cb(RdKafka::Message &msg, void *opaque)
+  // callback after consumption
+  static void Consumer::consume_cb(RdKafka::Message &msg, void *opaque)
   {
     BOOST_LOG_TRIVIAL(info) << ("Consumed message with key " +
                                 *(msg.key()) +
@@ -64,6 +65,7 @@ namespace TPF
       case RdKafka::ERR_NO_ERROR:
         // Message consumed successfully
         ex_consume_cb.consume_cb(*msg, NULL);
+        Consumer::consume_cb(msg, NULL);
         delete msg;
         break;
       default:
@@ -74,6 +76,8 @@ namespace TPF
     }
   }
 
+  void consume() { run(); }
+
   void cleanup()
   {
     // Clean up
@@ -81,4 +85,9 @@ namespace TPF
     delete consumer_;
     delete conf;
   }
+
+  // void consume(RdKafka::ConsumeCb *cb)
+  // {
+  //   consumer_->consume_callback(cb);
+  // }
 } // namespace TPF
