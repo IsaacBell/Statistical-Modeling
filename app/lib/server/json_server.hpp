@@ -6,7 +6,11 @@
   }
 */
 
+#include <boost/property_tree/json_parser.hpp>
+
 #include "./server.hpp"
+
+using boost::property_tree::ptree;
 
 class JsonServer : public Server
 {
