@@ -1,1 +1,3 @@
-Don't mind me. I'm just using this repo as I learn to write finance code.
+I'm building a suite of financial instrument trading micro-services.
+
+More to come.
