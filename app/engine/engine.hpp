@@ -26,7 +26,10 @@ namespace TPF
     std::atomic<State> state_;
     std::unique_ptr<Producer> producer_;
 
-    Engine();
+    Engine::Engine() : state_(State::DISCONNECTED)
+    {
+      init();
+    }
     virtual ~Engine();
 
     virtual void init();

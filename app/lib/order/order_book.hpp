@@ -9,11 +9,41 @@ namespace TPF
   class OrderBook
   {
   public:
-    void add_order(int price, int volume);
-    void cancel_order(int price, int volume);
+    void OrderBook::add_order(int price, int volume)
+    {
+      order_accessor accessor;
+      auto existing = orders_.find(accessor, price);
+      if (existing)
+        accessor->second += volume;
+      else
+        orders_.insert(accessor, volume);
+    }
 
-    std::pair<int, int> get_best_bid() const;
-    std::pair<int, int> get_best_ask() const;
+    void OrderBook::cancel_order(int price, int volume)
+    {
+      order_accessor accessor;
+      auto existing = orders_.find(accessor, price);
+      if (existing)
+        accessor->second = std::max(accessor->second - volume, 0);
+    }
+
+    std::pair<int, int> OrderBook::get_best_bid() const
+    {
+      if (orders_.empty())
+      {
+        return {0, 0};
+      }
+      return {*orders_.crbegin(), orders_.crbegin()->second};
+    }
+
+    std::pair<int, int> OrderBook::get_best_ask() const
+    {
+      if (orders_.empty())
+      {
+        return {0, 0};
+      }
+      return {*orders_.cbegin(), orders_.cbegin()->second};
+    }
 
   private:
     order_lookup_by_price orders_; // map of price to volume

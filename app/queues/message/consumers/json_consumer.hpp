@@ -2,8 +2,6 @@
 #include <iostream>
 #include <boost/property_tree/json_parser.hpp>
 
-#include "../consumer.hpp"
-
 namespace TPF
 {
   class JsonConsumer : public Consumer
